@@ -2,7 +2,7 @@ name: Mastodon Bot
 
 on:
   schedule:
-    - cron: "*/1 * * * *"  # 1分ごと
+    - cron: "*/10 * * * *"  # 10分ごと
   workflow_dispatch:  # 手動実行も可能
 
 jobs:
