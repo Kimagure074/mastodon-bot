@@ -2,13 +2,15 @@ name: Mastodon Bot
 
 on:
   schedule:
-    - cron: "*/10 * * * *"  # 10分ごと
-  workflow_dispatch:  # 手動実行も可能
+    # - cron: "*/10 * * * *"   # 10分ごと（UTC）
+    - cron: "0 0 * * *"      # 毎日 00:00 UTC（例: JST 9:00 の場合）
+    - cron: "0 3 * * *"      # 毎日 00:00 UTC（例: JST 12:00 の場合）
+    - cron: "0 10 * * *"      # 毎日 08:00 UTC（例: JST 19:00 の場合）
+  workflow_dispatch:         # 手動実行
 
 jobs:
   post:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
 
@@ -23,4 +25,5 @@ jobs:
       - name: Run Mastodon bot
         env:
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+          SCHEDULE_TIMES_JST: "09:00,12:00,19:00"   # 任意（JST時刻のリスト）
         run: python bot.py
