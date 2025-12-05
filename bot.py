@@ -14,7 +14,7 @@ def main():
     now_jst = now_utc + timedelta(hours=9)   # ← ここで timedelta が使える
 
     print("now_jst:", now_jst.strftime("%Y-%m-%d %H:%M:%S"))
-    mastodon.status_post("Hello Mastodon World from GitHub Actions!")
+    mastodon.status_post("now_jst:", now_jst.strftime("%Y-%m-%d %H:%M:%S"))
 
 if __name__ == "__main__":
     main()
